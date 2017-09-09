@@ -1,6 +1,5 @@
 // Варинат работы - 19
 #include <stdio.h>
-#include <malloc.h>
 #include <string.h>
 
 struct Books {
@@ -10,13 +9,25 @@ struct Books {
     int number;
 };
 
-int main() {
-    struct Books books[4];
-    getBooks(books);
-    //printf("%d",books[0].number);
-    sort();
-    //displayBooks(books);
-    return 0;
+void getBooks( struct Books *books) {
+    char setName[20];
+    char setPublisher[20];
+    double setPrice;
+    int setNumber;
+    for (int i = 0; i < 4; i++) {
+        printf("Enter book's name:");
+        scanf("%s", &setName);
+        books[i].name[20] = (char) strcpy(books[i].name, setName);
+        printf("Enter publisher's name:");
+        scanf("%s", &setPublisher);
+        books[i].publisher[20] = (char) strcpy(books[i].publisher, setPublisher);
+        printf("Enter book's price:");
+        scanf("%lf", &setPrice);
+        books[i].price = setPrice;
+        printf("Enter number of books:");
+        scanf("%d", &setNumber);
+        books[i].number = setNumber;
+    }
 }
 
 void displayBooks(const struct Books *books) {
@@ -30,23 +41,10 @@ void displayBooks(const struct Books *books) {
     }
 }
 
-void getBooks( struct Books *books) {
-    char setName[20];
-    char setPublisher[20];
-    double setPrice;
-    int setNumber;
-    for (int i = 0; i < 4; i++) {
-        printf("Enter book's name:");
-        scanf("%s", &setName);
-        books[i].name[20] = strcpy(books[i].name, setName);
-        printf("Enter publisher's name:");
-        scanf("%s", &setPublisher);
-        books[i].publisher[20] = strcpy(books[i].publisher, setPublisher);
-        printf("Enter book's price:");
-        scanf("%lf", &setPrice);
-        books[i].price = setPrice;
-        printf("Enter number of books:");
-        scanf("%d", &setNumber);
-        books[i].number = setNumber;
-    }
+int main() {
+    struct Books books[4];
+    getBooks(books);
+    displayBooks(books);
+    return 0;
 }
+
